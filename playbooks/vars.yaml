@@ -1,4 +1,2 @@
 app: senha
 replicas: 3
-apiKey: LgE6UUYSpO26lXdQ9M2H6R9hIeOhojoZJAFEBqJcgkZy
-oc_host: https://c114-e.us-south.containers.cloud.ibm.com:32392
