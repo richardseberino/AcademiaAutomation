@@ -1,0 +1,20 @@
+---
+- name: 'Recreate Cassandra Schema'
+  hosts: oc
+
+  tasks: 
+  - name: 'Login no OpenShift'
+    shell:
+      "oc login -u apikey -p LgE6UUYSpO26lXdQ9M2H6R9hIeOhojoZJAFEBqJcgkZy --server=https://c114-e.us-south.containers.cloud.ibm.com:32392" 
+
+  - name: Recria o schema no banco de dados Cassandra
+    kubernetes.core.k8s_exec:
+      namespace: tef
+      pod: cassandra-0
+      container: cassandra
+      command: cqlsh -u cassandra -p cassandra -f /tmp/cassandra.sql
+    ignore_errors: True
+
+  - name: 'Logout do OpenShift'
+    shell:
+      "oc logout" 
