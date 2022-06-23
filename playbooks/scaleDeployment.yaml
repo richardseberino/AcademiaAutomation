@@ -1,13 +1,13 @@
 ---
 - name: Escalar Pods de Aplicacao
-  hosts: oc
+  hosts: localhost
 
   tasks:
   - name: 'Login no OpenShift'
     shell:
       "oc login -u apikey -p {{ apiKey }} --server={{ oc_host }}" 
 
-  - name: Scale deployment config up
+  - name: Escala o Numero de instancias da aplicacao
     kubernetes.core.k8s_scale:
       api_version: v1
       kind: Deployment

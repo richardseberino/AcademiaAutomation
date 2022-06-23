@@ -1,6 +1,6 @@
 ---
 - name: 'Recreate Cassandra Schema'
-  hosts: oc
+  hosts: localhost
 
   tasks: 
   - name: 'Login no OpenShift'
