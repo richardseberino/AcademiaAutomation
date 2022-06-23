@@ -1,0 +1,21 @@
+---
+- name: Escalar Pods de Aplicacao
+  hosts: oc
+
+  tasks:
+  - name: 'Login no OpenShift'
+    shell:
+      "oc login -u apikey -p {{ apiKey }} --server={{ oc_host }}" 
+
+  - name: Scale deployment config up
+    kubernetes.core.k8s_scale:
+      api_version: v1
+      kind: Deployment
+      name: "{{ app }}"
+      namespace: tef
+      replicas: "{{ replicas }}"
+      wait_timeout: 60
+
+  - name: 'Logout do OpenShift'
+    shell:
+      "oc logout"       

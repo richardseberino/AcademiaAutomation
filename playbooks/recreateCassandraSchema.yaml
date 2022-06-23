@@ -5,7 +5,7 @@
   tasks: 
   - name: 'Login no OpenShift'
     shell:
-      "oc login -u apikey -p LgE6UUYSpO26lXdQ9M2H6R9hIeOhojoZJAFEBqJcgkZy --server=https://c114-e.us-south.containers.cloud.ibm.com:32392" 
+      "oc login -u apikey -p {{ apiKey }} --server={{ oc_host }}" 
 
   - name: Recria o schema no banco de dados Cassandra
     kubernetes.core.k8s_exec:
